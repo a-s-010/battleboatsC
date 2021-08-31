@@ -37,6 +37,44 @@ namespace battleboats
 
         private void CompPlayTimerEvent(object sender, EventArgs e)
         {
+            if (playerPositions.Count > 0 && rounds > 0)
+            {
+                rounds -= 1;
+
+                roundsTxt.Text = "Round: " + rounds;
+
+                int index = rand.Next(playerPositions.Count);
+
+                if ((string)playerPositions[index].Tag == "PlayerShip")
+                {
+                    playerPositions[index].BackColor = Color.Red;
+                    compMove.Text = playerPositions[index].Text;
+                    playerPositions[index].Enabled = false;
+                    playerPositions.RemoveAt(index);
+                    compScore += 1;
+                    compScoreTxt.Text = compScore.ToString();
+                    CompPlayTimer.Stop();
+
+                }
+                else
+                {
+                    playerPositions[index].BackColor = Color.Yellow;
+                    compMove.Text = playerPositions[index].Text;
+                    playerPositions[index].Enabled = false;
+                    playerPositions.RemoveAt(index);
+                    CompPlayTimer.Stop();
+
+                }
+
+                
+
+            }
+
+            if (rounds < 1 || compScore > 2 || playerScore > 2)
+            {
+                MessageBox.Show("You have won the battle");
+#showmenuaftergame
+            }
 
 
         }
@@ -70,7 +108,7 @@ namespace battleboats
                     {
                         compPositions[index].Enabled = false;
                         compPositions[index].BackColor = Color.Yellow;
-                        
+                        CompPlayTimer.Start();
                     }
                 }
             }
@@ -104,8 +142,8 @@ namespace battleboats
         private void RestartGame()
         {
 
-            playerPositions = new List<Button> {A1Player, A2Player, A3Player, A4Player, B1Player, B2Player, B3Player, B4Player, C1Player, C2Player, C3Player, C4Player, D1Player, D2Player, D3Player, D4Player };
-            compPositions = new List<Button> {A1Comp, A2Comp, A3Comp, A4Comp, B1Comp, B2Comp, B3Comp, B4Comp, C1Comp, C2Comp, C3Comp, C4Comp, D1Comp, D2Comp, D3Comp, D4Comp };
+            playerPositions = new List<Button> {a5, a6, a7, a8, B1Player, B2Player, B3Player, B4Player, C1Player, C2Player, C3Player, C4Player, D1Player, D2Player, D3Player, D4Player };
+            compPositions = new List<Button> {a1, a2, a3, a4, b1, b2, b3, b4, c1, c2, c3, c4, d1, d2, d3, d4 };
 
             AttackChoices.Items.Clear();
 
