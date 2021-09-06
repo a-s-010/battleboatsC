@@ -72,8 +72,22 @@ namespace battleboats
 
             if (rounds < 1 || compScore > 2 || playerScore > 2)
             {
-                MessageBox.Show("You have won the battle");
-#showmenuaftergame
+                if (playerScore > compScore)
+                {
+                    MessageBox.Show("You have won the battle", "Win");
+                    RestartGame();
+                }
+                
+            }
+            else if (compScore > playerScore)
+            {
+                MessageBox.Show("You have lost the battle", "Lost");
+                RestartGame();
+            }
+            else if (compScore == playerScore)
+            {
+                MessageBox.Show("No one wins this battle", "Draw");
+                RestartGame();
             }
 
 
@@ -202,15 +216,9 @@ namespace battleboats
                 {
                     index = rand.Next(compPositions.Count);
                 }
-            
-            
-            
+
             
             }
-
-
-
-
 
 
 
@@ -218,7 +226,42 @@ namespace battleboats
 
         private void EnemyPlayTimerEvent(object sender, EventArgs e)
         {
+            if (playerPositions.Count > 0 && rounds > 0)
+            {
+                rounds -= 1;
 
+                roundsTxt.Text = "Round: " + rounds;
+
+                int index = rand.Next(playerPositions.Count);
+
+                if ((string)playerPositions[index].Tag == "playerShip")
+                {
+                    enemyMoveTxt.Text = playerPositions[index].Text;
+                    playerPositions[index].Enabled = false;
+                    playerPositions[index].BackColor = Color.Red;
+                    playerPositions.RemoveAt(index);
+                    compScore += 1;
+                    compScoreTxt.Text = compScore.ToString();
+                    CompPlayTimer.Stop();
+
+                }
+                else
+                {
+
+                    enemyMoveTxt.Text = playerPositions[index].Text;
+                    playerPositions[index].Enabled = false;
+                    playerPositions[index].BackColor = Color.Yellow;
+                    playerPositions.RemoveAt(index);
+                    CompPlayTimer.Stop();
+                }
+            }
+        }
+
+        private void toMenu_Click(object sender, EventArgs e)
+        {
+            var back = new menu();
+            back.Show();
+            this.Hide();
         }
     }
 }

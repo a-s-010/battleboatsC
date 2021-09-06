@@ -71,6 +71,8 @@ namespace battleboats
             this.compMove = new System.Windows.Forms.Label();
             this.roundsTxt = new System.Windows.Forms.Label();
             this.CompPlayTimer = new System.Windows.Forms.Timer(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.toMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // a5
@@ -443,22 +445,43 @@ namespace battleboats
             // roundsTxt
             // 
             this.roundsTxt.AutoSize = true;
-            this.roundsTxt.Location = new System.Drawing.Point(514, 72);
+            this.roundsTxt.Location = new System.Drawing.Point(548, 73);
             this.roundsTxt.Name = "roundsTxt";
-            this.roundsTxt.Size = new System.Drawing.Size(35, 13);
+            this.roundsTxt.Size = new System.Drawing.Size(19, 13);
             this.roundsTxt.TabIndex = 39;
-            this.roundsTxt.Text = "label2";
+            this.roundsTxt.Text = "10";
             // 
             // CompPlayTimer
             // 
             this.CompPlayTimer.Interval = 1000;
             this.CompPlayTimer.Tick += new System.EventHandler(this.EnemyPlayTimerEvent);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(497, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Round :";
+            // 
+            // toMenu
+            // 
+            this.toMenu.Location = new System.Drawing.Point(925, 449);
+            this.toMenu.Name = "toMenu";
+            this.toMenu.Size = new System.Drawing.Size(75, 23);
+            this.toMenu.TabIndex = 41;
+            this.toMenu.Text = "Menu";
+            this.toMenu.UseVisualStyleBackColor = true;
+            this.toMenu.Click += new System.EventHandler(this.toMenu_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 510);
+            this.Controls.Add(this.toMenu);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.roundsTxt);
             this.Controls.Add(this.compMove);
             this.Controls.Add(this.enemyMoveTxt);
@@ -549,6 +572,8 @@ namespace battleboats
         private System.Windows.Forms.Label compMove;
         private System.Windows.Forms.Label roundsTxt;
         private System.Windows.Forms.Timer CompPlayTimer;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button toMenu;
     }
 }
 
